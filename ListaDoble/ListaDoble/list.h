@@ -11,11 +11,11 @@ public:
 	~list();
 	void add(int);
 	void deleteByNumber(int);
-	void isEmpty();
+	bool isEmpty();
 	std::string toString();
 
 
 private:
-	node* primero;
+	node* first;
 };
 
