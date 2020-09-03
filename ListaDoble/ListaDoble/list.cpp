@@ -16,15 +16,25 @@ list::~list() {
 }
 
 void list::add(int number) {
-	node* aux;
+	node* aux = new node(number, nullptr, nullptr);
 	if (isEmpty())
 	{
-		aux = new node(number, NULL, NULL);
 		first = aux;
-		delete aux;
 	}
 	else {
-
+		node* temp = first;
+		if (first->getNext() == NULL) {
+			first->setNext(aux);
+			aux->setPrior(first);
+		}
+		else {
+			while (temp->getNext() != NULL)
+			{
+				temp = temp->getNext();
+			}
+			temp->setNext(aux);
+			aux->setPrior(temp);
+		}
 	}
 }
 
@@ -46,6 +56,6 @@ std::string list::toString() {
 		s << aux->getNumber() << ", ";
 		aux = aux->getNext();
 	}
-	return s.str;
+	return s.str();
 	
 }
